@@ -1,0 +1,15 @@
+### Needed REST Client extention installed.
+
+@baseUrl = http://localhost:3000
+
+### Root Endpoint
+GET {{baseUrl}}/
+
+### Rectangle Area (width=10, height=5, Expect 50)
+GET {{baseUrl}}/geometry/rectangle?width=10&height=5
+
+### Circle Area (radius=5, Expect ~78.54)
+GET {{baseUrl}}/geometry/circle?radius=5
+
+### Triangle Area (base=10, height=5, Expect 25)
+GET {{baseUrl}}/geometry/triangle?base=10&height=5

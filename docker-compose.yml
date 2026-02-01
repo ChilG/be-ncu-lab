@@ -1,0 +1,53 @@
+version: '3.8'
+name: ncu-be-lab1
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ncu
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - be-network-1
+
+  lab2:
+    build:
+      context: ./lab2
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=ncu
+    depends_on:
+      - db
+    networks:
+      - be-network-1
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - db
+    networks:
+      - be-network-1
+
+volumes:
+  db_data:
+
+
+networks:
+  be-network-1:
+    driver: bridge
