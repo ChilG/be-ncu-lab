@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:3000
+
+### REQ 101: Get all courses
+GET {{baseUrl}}/course/list
+
+### REQ 102: Search course by ID (Use correct ID from create response if checking manually, here assuming 1)
+GET {{baseUrl}}/course/search/id?courseId=999
+
+### REQ 103: Get promoted courses
+GET {{baseUrl}}/course/promote
+
+### REQ 104: Create a course with specific ID
+POST {{baseUrl}}/course/create
+Content-Type: application/json
+
+{
+    "course_id": 999,
+    "title": "Custom ID Course",
+    "description": "Course with specific ID",
+    "duration": 60,
+    "lecturer": "Dr. Specific",
+    "category": "Other",
+    "promote": false,
+    "course_image": "custom.jpg"
+}
+
+### REQ 105: Update course (Assumes course_id 1)
+PUT {{baseUrl}}/course/update
+Content-Type: application/json
+
+{
+    "course_id": 999,
+    "promote": false,
+    "description": "Updated Description"
+}
+
+### REQ 106: Delete course
+DELETE {{baseUrl}}/course/delete?courseId=999

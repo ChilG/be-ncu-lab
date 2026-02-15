@@ -1,3 +1,9 @@
+# All of credential for testing only.
+# DB_HOST: db
+# DB_USER: root
+# DB_PASSWORD: rootpassword
+# DB_NAME: ncu, se_course_db
+
 version: '3.8'
 name: ncu-be-lab1
 
@@ -39,6 +45,23 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - db
+    networks:
+      - be-network-1
+
+  midterm-lab:
+    build:
+      context: ./midterm-lab
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=se_course_db
+      - PORT=3000
     depends_on:
       - db
     networks:
