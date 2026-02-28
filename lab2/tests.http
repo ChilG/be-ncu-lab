@@ -16,7 +16,9 @@ Content-Type: application/json
     "id": "T001",
     "name": "Prof. Goe",
     "department": "Computer Science",
-    "picture": "https://example.com/goe.jpg"
+    "picture": "https://example.com/goe.jpg",
+    "username": "goe123",
+    "password": "securepassword123"
 }
 
 ### Update Teacher
@@ -26,7 +28,18 @@ Content-Type: application/json
 {
     "name": "Prof. Goe Updated",
     "department": "Software Engineering",
-    "picture": "https://example.com/goe_v2.jpg"
+    "picture": "https://example.com/goe_v2.jpg",
+    "username": "goe_updated",
+    "password": "newpassword456"
+}
+
+### Login
+POST {{baseUrl}}/teacher/login
+Content-Type: application/json
+
+{
+    "username": "goe_updated",
+    "password": "newpassword456"
 }
 
 ### Delete Teacher
